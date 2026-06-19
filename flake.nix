@@ -5,19 +5,23 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     home-manager = {
-      url = "github:nix-community/home-manager";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dotfiles = {
+      url = "git+file:///home/ntreml/code/home-manager";
     };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
     # use "nixos", or your hostname as the name of the configuration
     # it's a better practice than "default" shown in the video
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
         ./configuration.nix
-        # inputs.home-manager.nixosModules.ntreml
+        inputs.home-manager.nixosModules.default
       ];
     };
   };

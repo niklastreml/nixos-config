@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports =
@@ -87,10 +87,13 @@
     description = "Niklas Treml";
     extraGroups = [ "networkmanager" "wheel" "docker"];
     shell = pkgs.fish;
-    packages = with pkgs; [ home-manager ];
   };
 
-  # home-manager.users.ntreml = import ./home.nix;
+  home-manager = {
+    useGlobalPkgs = true;
+    users.ntreml = import "${inputs.dotfiles}/home.nix";
+    extraSpecialArgs = { inherit inputs; isWsl = false; };
+  };
 
 
   # Install firefox.

@@ -45,6 +45,11 @@
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  environment.variables = {
+    EDITOR = "nvim";
+    SUDO_EDITOR = "nvim";
+  };
+
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }

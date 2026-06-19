@@ -29,7 +29,7 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/vm/configuration.nix
-        # inputs.home-manager.nixosModules.default
+        inputs.home-manager.nixosModules.default
       ];
     };
   };

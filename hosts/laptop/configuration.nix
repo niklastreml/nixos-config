@@ -8,11 +8,12 @@
 		../../modules/home-manager.nix
 		../../modules/cli.nix
 		../../modules/gui.nix
+		../../modules/bluetooth.nix
 		../../modules/networkmanager.nix
 		../../modules/docker.nix
 		./hardware-configuration.nix
 	];
 
-	networking.hostName = "vm";
-	services.spice-vdagentd.enable = true;
+	networking.hostName = "laptop";
+	services.xserver.libinput.enable = true;
 }

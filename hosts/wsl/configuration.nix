@@ -9,10 +9,4 @@
 	];
 
 	networking.hostName = "wsl";
-
-	home-manager = {
-	  useGlobalPkgs = true;
-	  users.ntreml = "${inputs.dotfiles}/hosts/wsl.nix";
-	  extraSpecialArgs = { inherit inputs; };
-	};
 }

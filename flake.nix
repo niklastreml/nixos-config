@@ -3,16 +3,6 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
-
-    home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dotfiles = {
-      url = "git+file:///home/ntreml/code/home-manager";
-      # url = "github:niklastreml/home-manager";
-    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs: {
@@ -21,8 +11,7 @@
     nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       specialArgs = {inherit inputs;};
       modules = [
-        ./configuration.nix
-        inputs.home-manager.nixosModules.default
+        ./hosts/laptop/configuration.nix
       ];
     };
 
@@ -30,7 +19,6 @@
       specialArgs = {inherit inputs;};
       modules = [
         ./hosts/vm/configuration.nix
-        inputs.home-manager.nixosModules.default
       ];
     };
   };

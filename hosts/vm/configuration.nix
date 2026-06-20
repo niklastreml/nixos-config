@@ -19,4 +19,5 @@
 
   networking.hostName = "vm";
   services.spice-vdagentd.enable = true;
+  services.qemuGuest.enable = true;
 }

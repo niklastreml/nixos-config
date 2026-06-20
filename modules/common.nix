@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ...}:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 {
 
   # Bootloader.
@@ -30,7 +35,11 @@
   users.users."ntreml" = {
     isNormalUser = true;
     description = "Niklas Treml";
-    extraGroups = [ "networkmanager" "wheel" "docker"];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
     shell = pkgs.fish;
   };
 
@@ -43,7 +52,10 @@
   virtualisation.docker.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   environment.variables = {
     EDITOR = "nvim";

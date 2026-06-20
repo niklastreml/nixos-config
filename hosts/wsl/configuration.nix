@@ -1,12 +1,17 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
-	imports = [
-		../../modules/common.nix
-		../../modules/cli.nix
-		../../modules/docker.nix
-		./hardware-configuration.nix
-	];
+  imports = [
+    ../../modules/common.nix
+    ../../modules/cli.nix
+    ../../modules/docker.nix
+    ./hardware-configuration.nix
+  ];
 
-	networking.hostName = "wsl";
+  networking.hostName = "wsl";
 }

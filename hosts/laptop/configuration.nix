@@ -20,4 +20,14 @@
 
   networking.hostName = "laptop";
   services.xserver.libinput.enable = true;
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.device = "nodev";
+  boot.loader.grub.efiSupport = true;
+  
+  # EFI variables and mount point
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
 }

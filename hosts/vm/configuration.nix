@@ -20,4 +20,9 @@
   networking.hostName = "vm";
   services.spice-vdagentd.enable = true;
   services.qemuGuest.enable = true;
+
+  # Bootloader.
+  boot.loader.grub.enable = true;
+  boot.loader.grub.useOSProber = true;
+  boot.loader.grub.device = "/dev/vda";
 }

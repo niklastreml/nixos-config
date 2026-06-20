@@ -11,6 +11,7 @@
 
     dotfiles = {
       url = "git+file:///home/ntreml/code/home-manager";
+      # url = "github:niklastreml/home-manager";
     };
   };
 

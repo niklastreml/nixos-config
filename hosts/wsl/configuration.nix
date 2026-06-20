@@ -3,12 +3,16 @@
 {
 	imports = [
 		../../modules/common.nix
-		../../modules/home-manager.nix
 		../../modules/cli.nix
 		../../modules/docker.nix
 		./hardware-configuration.nix
 	];
 
-	networking.hostName = "laptop";
-	services.xserver.libinput.enable = true;
+	networking.hostName = "wsl";
+
+	home-manager = {
+	  useGlobalPkgs = true;
+	  users.ntreml = "${inputs.dotfiles}/hosts/wsl.nix";
+	  extraSpecialArgs = { inherit inputs; };
+	};
 }

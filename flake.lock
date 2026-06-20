@@ -6,11 +6,11 @@
         "nixpkgs": "nixpkgs"
       },
       "locked": {
-        "lastModified": 1781855853,
-        "narHash": "sha256-/0GyogL4xiQgZXBZeodW1DaS5Ownax2SA61/v44gnys=",
+        "lastModified": 1781870776,
+        "narHash": "sha256-5iCUKuY9ncI8BqpwEw/zFkezHXfVSpMO84D5QkQlqyI=",
         "ref": "refs/heads/feat/organize",
-        "rev": "ec61f0a537ea97c583709700f1cbb31900fcedfb",
-        "revCount": 12,
+        "rev": "1cef63909f5166aa57b2f0bee46095359d825042",
+        "revCount": 17,
         "type": "git",
         "url": "file:///home/ntreml/code/home-manager"
       },

@@ -19,6 +19,7 @@
     })
     ../../modules/bluetooth.nix
     ../../modules/networkmanager.nix
+    ../../modules/wifi.nix
     ../../modules/docker.nix
     ./hardware-configuration.nix
   ];
@@ -35,4 +36,21 @@
   # EFI variables and mount point
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
+
+  powerManagement.powerDownCommands = ''
+    # Gracefully unbind the iwlwifi driver from the device before sleep
+    if [ -e "/sys/bus/pci/drivers/iwlwifi/0000:01:00.0" ]; then
+      echo "0000:01:00.0" > /sys/bus/pci/drivers/iwlwifi/unbind
+    fi
+  '';
+
+  powerManagement.resumeCommands = ''
+    # Rebind the driver to wake the card back up
+    echo "0000:01:00.0" > /sys/bus/pci/drivers/iwlwifi/bind
+
+    # Give the kernel a moment, then restart iwd
+    sleep 2
+    ${pkgs.systemd}/bin/systemctl restart iwd
+  '';
+
 }

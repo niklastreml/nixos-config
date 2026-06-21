@@ -45,6 +45,9 @@
     # '';
   };
   virtualisation.docker.enable = true;
+  virtualisation.vmVariant = {
+    users.users.ntreml.initialPassword = "ntreml";
+  };
 
   nixpkgs.config.allowUnfree = true;
   nix.settings.experimental-features = [

@@ -11,7 +11,6 @@
     hyprlock
     hyprpaper
     waybar
-    tuigreet
   ];
 
 }

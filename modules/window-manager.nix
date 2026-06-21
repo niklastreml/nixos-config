@@ -7,13 +7,27 @@
 {
   programs.hyprland.enable = true;
 
-  services.greetd = {
+  programs.regreet = {
     enable = true;
-    settings = {
-      default_session = {
-        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd start-hyprland";
-        user = "greeter";
-      };
+    theme = {
+      name = "Dracula";
+      package = pkgs.dracula-theme;
+    };
+
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+
+    cursorTheme = {
+      name = "Bibata-Modern-Classic";
+      package = pkgs.bibata-cursors;
+    };
+
+    font = {
+      name = "FiraCode Nerd Font";
+      package = pkgs.nerd-fonts.fira-code;
+      size = 14;
     };
   };
 

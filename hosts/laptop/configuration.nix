@@ -4,7 +4,6 @@
   inputs,
   ...
 }:
-
 {
   imports = [
     ../../modules/common.nix
@@ -12,6 +11,12 @@
     ../../modules/window-manager.nix
     ../../modules/cli.nix
     ../../modules/gui.nix
+    (import ../../modules/grub-theme.nix {
+      theme = "mojave";
+      type = "float";
+      screen = "2k";
+      color = "dark";
+    })
     ../../modules/bluetooth.nix
     ../../modules/networkmanager.nix
     ../../modules/docker.nix
@@ -26,7 +31,7 @@
   boot.loader.grub.useOSProber = true;
   boot.loader.grub.device = "nodev";
   boot.loader.grub.efiSupport = true;
-  
+
   # EFI variables and mount point
   boot.loader.efi.canTouchEfiVariables = true;
   boot.loader.efi.efiSysMountPoint = "/boot/efi";

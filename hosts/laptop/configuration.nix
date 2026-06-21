@@ -19,7 +19,7 @@
   ];
 
   networking.hostName = "laptop";
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;

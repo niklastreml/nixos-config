@@ -8,6 +8,7 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelModules = [ "pkcs8_key_parser" ];
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";

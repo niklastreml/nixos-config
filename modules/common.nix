@@ -61,5 +61,9 @@
     SUDO_EDITOR = "nvim";
   };
 
+  nix.extraOptions = ''
+    !include /etc/nixos/github-token.conf
+  '';
+
   system.stateVersion = "26.05"; # Did you read the comment?
 }

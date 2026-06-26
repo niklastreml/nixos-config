@@ -15,6 +15,11 @@
     ../../modules/docker.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    wsl-open
+    xdg-utils
+  ];
+
   networking.hostName = "wsl";
 
   programs.neovim = {
@@ -22,6 +27,7 @@
     defaultEditor = true;
   };
 
+  wsl.interop.register = true;
   wsl.enable = true;
   wsl.defaultUser = "ntreml";
   wsl.wslConf.network.generateResolvConf = false;

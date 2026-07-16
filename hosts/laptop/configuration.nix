@@ -18,6 +18,7 @@
       color = "dark";
     })
     ../../modules/bluetooth.nix
+    ../../modules/steam.nix
     ../../modules/networkmanager.nix
     ../../modules/wifi.nix
     ../../modules/docker.nix

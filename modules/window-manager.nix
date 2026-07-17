@@ -5,29 +5,23 @@
   ...
 }:
 {
+  imports = [
+    inputs.noctalia-greeter.nixosModules.default
+  ];
+
   programs.hyprland.enable = true;
 
-  programs.regreet = {
+  programs.noctalia-greeter = {
     enable = true;
-    theme = {
-      name = "Dracula";
-      package = pkgs.dracula-theme;
-    };
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-
-    cursorTheme = {
-      name = "Bibata-Modern-Classic";
-      package = pkgs.bibata-cursors;
-    };
-
-    font = {
-      name = "FiraCode Nerd Font";
-      package = pkgs.nerd-fonts.fira-code;
-      size = 14;
+    settings = {
+      cursor = {
+        theme = "Bibata-Modern-Classic";
+        size = 24;
+        package = pkgs.bibata-cursors;
+      };
+      keyboard = {
+        layout = "eu";
+      };
     };
   };
 

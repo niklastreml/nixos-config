@@ -39,6 +39,7 @@
   boot.loader.efi.efiSysMountPoint = "/boot/efi";
 
   services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
   powerManagement.powerDownCommands = ''
     # Gracefully unbind the iwlwifi driver from the device before sleep
     if [ -e "/sys/bus/pci/drivers/iwlwifi/0000:01:00.0" ]; then

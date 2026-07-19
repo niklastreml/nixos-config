@@ -6,11 +6,6 @@
 }:
 {
   environment.systemPackages = with pkgs; [
-    walker
-    elephant
-    hyprlock
-    hyprpaper
-    waybar
   ];
 
 }

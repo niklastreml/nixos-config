@@ -12,6 +12,7 @@
     ../../modules/window-manager.nix
     ../../modules/cli.nix
     ../../modules/gui.nix
+    ../../modules/usb.nix
     ../../modules/networkmanager.nix
     ../../modules/docker.nix
     ./hardware-configuration.nix

@@ -19,6 +19,7 @@
     ../../modules/bluetooth.nix
     ../../modules/steam.nix
     ../../modules/networkmanager.nix
+    ../../modules/usb.nix
     ../../modules/wifi.nix
     ../../modules/docker.nix
     ./hardware-configuration.nix

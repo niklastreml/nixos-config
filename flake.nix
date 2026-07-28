@@ -54,10 +54,25 @@
   outputs =
     { self, nixpkgs, home-manager, nur, nixvim, stylix, noctalia, aislop, work-skills, ... }@inputs:
     let
+      lib = nixpkgs.lib;
+
+      # Feature registry. Each directory under ./features is a self-contained
+      # feature bundling its NixOS and/or home-manager layers behind a single
+      # `myFeatures.<name>.enable` toggle. Every feature is imported into every
+      # host; the mkIf gates keep unused ones inert.
+      features = import ./lib/features.nix {
+        inherit lib;
+        featuresDir = ./features;
+      };
+
+      # Features whose home.nix imports an upstream module that isn't
+      # darwin-safe. On darwin hosts only their options.nix is loaded.
+      linuxOnlyFeatures = [ "noctalia" ];
+
       # Args threaded into every home-manager module (both the NixOS-integrated
       # path and the standalone path). Modules ignore what they don't use.
       homeSpecialArgs = {
-        inherit aislop nixvim work-skills;
+        inherit inputs aislop nixvim work-skills;
       };
 
       # Overlays applied to every host's package set. NUR is exposed as
@@ -68,17 +83,6 @@
           nur.overlays.default
         ];
 
-      # Extra home-manager modules per host (stylix everywhere, noctalia on the
-      # graphical hosts). Reused by both mkHost and mkHome so there is a single
-      # source of truth.
-      homeExtraModules = {
-        laptop = [ stylix.homeModules.stylix noctalia.homeModules.default ];
-        desktop = [ stylix.homeModules.stylix noctalia.homeModules.default ];
-        vm = [ stylix.homeModules.stylix ];
-        wsl = [ stylix.homeModules.stylix ];
-        macbook = [ stylix.homeModules.stylix ];
-      };
-
       # Build a NixOS system with home-manager integrated. `nixos-rebuild switch`
       # rolls out the system config and this host's home config together.
       mkHost =
@@ -88,26 +92,36 @@
           specialArgs = { inherit inputs; };
           modules = [
             { nixpkgs.overlays = mkOverlays system; }
-            ./nixos/hosts/${hostname}/configuration.nix
+            ./system/core.nix
+            ./hosts/${hostname}/nixos.nix
             home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = homeSpecialArgs;
-              home-manager.users.ntreml = {
-                imports = homeExtraModules.${hostname} ++ [
-                  ./home/hosts/${hostname}.nix
-                ];
-              };
-            }
-          ];
+            (
+              { config, ... }:
+              {
+                home-manager.useGlobalPkgs = true;
+                home-manager.useUserPackages = true;
+                home-manager.extraSpecialArgs = homeSpecialArgs;
+                home-manager.users.ntreml = {
+                  imports =
+                    [ ./home/core.nix ]
+                    ++ (features.homeModules { })
+                    ++ [ ./hosts/${hostname}/home.nix ];
+                  # Bridge the NixOS-level feature toggles into home-manager so a
+                  # single `myFeatures.<name>.enable` drives both layers.
+                  myFeatures = config.myFeatures;
+                };
+              }
+            )
+          ]
+          ++ features.nixosModules;
         };
 
       # Build a standalone home-manager configuration for non-NixOS machines
-      # (Ubuntu, macOS) — reuses the same per-host home config.
+      # (macOS). Feature toggles are set directly in the host's home.nix.
       mkHome =
         { hostname, system ? "x86_64-linux" }:
         let
+          darwin = lib.hasSuffix "darwin" system;
           pkgs = import nixpkgs {
             inherit system;
             config.allowUnfree = true;
@@ -118,9 +132,13 @@
         home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = homeSpecialArgs;
-          modules = homeExtraModules.${hostname} ++ [
-            ./home/hosts/${hostname}.nix
-          ];
+          modules =
+            [ ./home/core.nix ]
+            ++ (features.homeModules {
+              inherit darwin;
+              linuxOnly = linuxOnlyFeatures;
+            })
+            ++ [ ./hosts/${hostname}/home.nix ];
         };
     in
     {
@@ -132,13 +150,8 @@
       };
 
       homeConfigurations = {
-        # Standalone entry points. NixOS hosts are normally activated via
-        # nixosConfigurations above; these are kept for parity and for
-        # non-NixOS machines.
-        "ntreml@laptop" = mkHome { hostname = "laptop"; };
-        "ntreml@desktop" = mkHome { hostname = "desktop"; };
-        "ntreml@vm" = mkHome { hostname = "vm"; };
-        "ntreml@wsl" = mkHome { hostname = "wsl"; };
+        # Standalone entry point for the non-NixOS (darwin) machine. The NixOS
+        # hosts are activated via nixosConfigurations above.
         "ntreml@macbook" = mkHome {
           hostname = "macbook";
           system = "aarch64-darwin";

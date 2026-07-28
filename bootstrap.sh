@@ -102,7 +102,7 @@ fi
 
 # --- rebuild ----------------------------------------------------------------
 echo "bootstrap: building host '$HOST' (branch '$BRANCH') with nixos-rebuild boot"
-sudo nixos-rebuild boot --flake "$TARGET_DIR#$HOST" "${NIX_FLAGS[@]}"
+sudo nixos-rebuild boot --flake "$TARGET_DIR#$HOST"
 
 cat <<EOF
 

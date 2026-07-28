@@ -94,6 +94,10 @@ in
     # ── opencode ~/work access (work.opencode.enable) ─────────────────
     (lib.mkIf cfg.opencode.enable {
       programs.opencode.settings.permission.read."/home/ntreml/work/*" = "allow";
+      # Don't prompt on out-of-workspace reads under ~/work (edits still ask,
+      # see the edit rules in the opencode feature).
+      programs.opencode.settings.permission.external_directory."/home/ntreml/work/**" =
+        "allow";
     })
   ];
 }

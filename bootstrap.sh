@@ -110,7 +110,7 @@ fi
 
 # --- rebuild ----------------------------------------------------------------
 echo "bootstrap: building host '$HOST' (branch '$BRANCH') with nh os boot"
-nh os boot "$TARGET_DIR" -H "$HOST"
+nh os boot "$TARGET_DIR" -H "$HOST" --accept-flake-config
 
 cat <<EOF
 

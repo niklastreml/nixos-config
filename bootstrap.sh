@@ -68,11 +68,7 @@ command -v nix >/dev/null 2>&1 || die "nix not found on PATH; run this from a Ni
 
 # git may be absent on a bare installer ISO; fall back to a throwaway nix shell.
 git() {
-	if command -v git >/dev/null 2>&1; then
-		command git "$@"
-	else
-		nix "${NIX_FLAGS[@]}" shell nixpkgs#git -c git "$@"
-	fi
+    nix "${NIX_FLAGS[@]}" shell nixpkgs#git -c git "$@"
 }
 
 # --- clone or update --------------------------------------------------------

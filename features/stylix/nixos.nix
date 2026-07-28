@@ -9,11 +9,13 @@ let
   cfg = config.myFeatures.stylix;
 in
 {
-  # This home-manager module is only imported for standalone (non-NixOS) hosts
-  # such as the darwin macbook. On NixOS hosts stylix is driven by
-  # features/stylix/nixos.nix, which imports the home-manager module itself.
-  imports = [ inputs.stylix.homeModules.stylix ];
+  imports = [ inputs.stylix.nixosModules.stylix ];
 
+  # The NixOS module auto-imports stylix into every home-manager.users.* and
+  # copies image/scheme/fonts/cursor/polarity down (homeManagerIntegration's
+  # autoImport + followSystem, both on by default). It also disables its own
+  # overlay when home-manager.useGlobalPkgs is set, so nothing extra is needed
+  # on the home-manager side for NixOS hosts.
   config = lib.mkIf cfg.enable {
     stylix.enable = true;
     stylix.polarity = "dark";

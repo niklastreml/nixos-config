@@ -69,6 +69,12 @@
       # darwin-safe. On darwin hosts only their options.nix is loaded.
       linuxOnlyFeatures = [ "noctalia" ];
 
+      # Features whose home-manager layer is only wanted on standalone
+      # (non-NixOS) hosts. On NixOS hosts stylix is driven by its NixOS module,
+      # which auto-imports the home-manager module; loading home.nix there too
+      # would define the same stylix.* options twice.
+      standaloneOnlyFeatures = [ "stylix" ];
+
       # Args threaded into every home-manager module (both the NixOS-integrated
       # path and the standalone path). Modules ignore what they don't use.
       homeSpecialArgs = {
@@ -104,7 +110,7 @@
                 home-manager.users.ntreml = {
                   imports =
                     [ ./home/core.nix ]
-                    ++ (features.homeModules { })
+                    ++ (features.homeModules { standaloneOnly = standaloneOnlyFeatures; })
                     ++ [ ./hosts/${hostname}/home.nix ];
                   # Bridge the NixOS-level feature toggles into home-manager so a
                   # single `myFeatures.<name>.enable` drives both layers.
@@ -136,7 +142,9 @@
             [ ./home/core.nix ]
             ++ (features.homeModules {
               inherit darwin;
+              standalone = true;
               linuxOnly = linuxOnlyFeatures;
+              standaloneOnly = standaloneOnlyFeatures;
             })
             ++ [ ./hosts/${hostname}/home.nix ];
         };

@@ -7,12 +7,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    (import ../../system/grub-theme.nix {
-      theme = "mojave";
-      type = "float";
-      screen = "2k";
-      color = "dark";
-    })
   ];
 
   myFeatures = lib.genAttrs [

@@ -27,14 +27,22 @@ in
     name: existing [ (optionsFile name) (featureFile name "nixos") ]
   ) names;
 
-  # options.nix + home.nix for every feature. `linuxOnly` features contribute
-  # only their options.nix when building a darwin host (their home.nix imports
-  # upstream modules that aren't darwin-safe, e.g. noctalia).
+  # options.nix + home.nix for every feature.
+  #
+  # `linuxOnly` features contribute only their options.nix when building a
+  # darwin host (their home.nix imports upstream modules that aren't
+  # darwin-safe, e.g. noctalia).
+  #
+  # `standaloneOnly` features contribute their home.nix only when building a
+  # standalone home-manager config (`standalone = true`). On NixOS hosts their
+  # home-manager layer is pulled in elsewhere (e.g. stylix, whose NixOS module
+  # auto-imports the home-manager module), so importing home.nix here too would
+  # define the same options twice.
   homeModules =
-    { darwin ? false, linuxOnly ? [ ] }:
+    { darwin ? false, standalone ? false, linuxOnly ? [ ], standaloneOnly ? [ ] }:
     lib.concatMap (
       name:
-      if darwin && lib.elem name linuxOnly then
+      if (darwin && lib.elem name linuxOnly) || (!standalone && lib.elem name standaloneOnly) then
         existing [ (optionsFile name) ]
       else
         existing [ (optionsFile name) (featureFile name "home") ]

@@ -24,5 +24,10 @@ in
         };
       };
     };
+
+    # stylix firefox theming targets this profile. Lives here (rather than in the
+    # stylix feature) because it is an HM-only option that the NixOS stylix
+    # module does not copy down to home-manager.
+    stylix.targets.firefox.profileNames = [ "default" ];
   };
 }

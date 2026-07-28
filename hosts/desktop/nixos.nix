@@ -25,7 +25,6 @@
     "browser"
     "discord"
     "direnv"
-    "eduroam"
     "fish"
     "git"
     "noctalia"

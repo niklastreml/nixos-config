@@ -104,9 +104,8 @@ if [[ ! -f "$TARGET_DIR/hosts/$HOST/nixos.nix" ]]; then
 	exit 1
 fi
 
-if [[ ! -f "$TARGET_DIR/hosts/$HOST/hardware-configuration.nix" ]]; then
-	die "hosts/$HOST/hardware-configuration.nix is missing; generate it first with: nixos-generate-config --show-hardware-config > $TARGET_DIR/hosts/$HOST/hardware-configuration.nix"
-fi
+echo "bootstrap: generating hardware-configuration for host '$HOST'…"
+nixos-generate-config --show-hardware-config > "$TARGET_DIR/hosts/$HOST/hardware-configuration.nix"
 
 # --- rebuild ----------------------------------------------------------------
 echo "bootstrap: building host '$HOST' (branch '$BRANCH') with nh os boot"

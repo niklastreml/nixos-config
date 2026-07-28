@@ -36,6 +36,9 @@
     name = "Bibata-Modern-Ice";
     size = 24;
   };
+  # stylix.cursor configures home.pointerCursor; HM now requires enabling it
+  # explicitly rather than inferring it from the presence of cursor options.
+  home.pointerCursor.enable = true;
 
   stylix.targets.firefox.profileNames = [ "default" ];
 }

@@ -33,6 +33,10 @@
   wsl.wslConf.network.generateResolvConf = false;
 
   users.users."ntreml" = {
+    # Match the UID the WSL instance already assigned; otherwise NixOS defaults
+    # the first normal user to 1000 and integrated home-manager activation
+    # aborts with "UID is 1001, expected 1000".
+    uid = 1001;
     # weird hack so something with dbus works or something idk
     linger = true;
   };

@@ -18,6 +18,34 @@ along together.
 | `wsl`     | NixOS (integrated HM)       | x86_64-linux  | WSL, full work host                |
 | `macbook` | standalone Home Manager     | aarch64-darwin | no NixOS layer                    |
 
+## Bootstrap
+
+On a fresh NixOS machine, clone this repo and stage the host config as the next
+boot generation in one line:
+
+```sh
+curl -sSfL https://raw.githubusercontent.com/niklastreml/nixos-config/master/bootstrap.sh | bash -s -- desktop
+```
+
+To try an in-progress branch, point both the fetched script and the `-b` flag at
+it:
+
+```sh
+curl -sSfL https://raw.githubusercontent.com/niklastreml/nixos-config/<branch>/bootstrap.sh | bash -s -- -b <branch> desktop
+```
+
+The script clones over HTTPS into `~/code/nixos-config` and runs
+`nixos-rebuild boot`, so **reboot to activate** the result. Options:
+
+- **host** — positional, defaults to `$(hostname)`.
+- `-b, --branch` — branch/tag/commit to check out (default `master`).
+- `-d, --dir` — clone target (default `~/code/nixos-config`).
+- Env overrides: `REPO_URL`, `BRANCH`, `TARGET_DIR`.
+
+Re-running is idempotent: an existing checkout is fetched and switched to the
+requested branch in place. Hosts that enable the `work` feature additionally need
+SSH access to the internal Telekom GitLab (see [Requirements](#requirements)).
+
 ## Layout
 
 ```
@@ -155,3 +183,7 @@ anywhere in the tree.
 Flakes and `nix-command` must be enabled. Some inputs (work skills) require SSH
 access to the internal Telekom GitLab; `noctalia` pulls from its own Cachix
 substituter, configured in `flake.nix`.
+
+`bootstrap.sh` passes `--extra-experimental-features 'nix-command flakes'` on
+every invocation, so it works even on a stock installer where flakes are not yet
+enabled system-wide.

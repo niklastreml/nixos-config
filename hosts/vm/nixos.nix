@@ -14,6 +14,7 @@
     "audio"
     "networkmanager"
     "docker"
+    "vm-guest-tools"
     # combined system + home
     "hyprland"
     "usb"
@@ -33,8 +34,6 @@
   ] (_: { enable = true; });
 
   networking.hostName = "vm";
-  services.spice-vdagentd.enable = true;
-  services.qemuGuest.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;

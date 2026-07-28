@@ -71,6 +71,11 @@ git() {
     nix "${NIX_FLAGS[@]}" shell nixpkgs#git -c git "$@"
 }
 
+# nh may also be absent on a fresh Nix install; fall back to a throwaway nix shell.
+nh() {
+    nix "${NIX_FLAGS[@]}" shell nixpkgs#nh -c nh "$@"
+}
+
 # --- clone or update --------------------------------------------------------
 if [[ -d "$TARGET_DIR/.git" ]]; then
 	echo "bootstrap: updating existing checkout at $TARGET_DIR"
@@ -101,8 +106,8 @@ if [[ ! -f "$TARGET_DIR/hosts/$HOST/hardware-configuration.nix" ]]; then
 fi
 
 # --- rebuild ----------------------------------------------------------------
-echo "bootstrap: building host '$HOST' (branch '$BRANCH') with nixos-rebuild boot"
-sudo nixos-rebuild boot --flake "$TARGET_DIR#$HOST"
+echo "bootstrap: building host '$HOST' (branch '$BRANCH') with nh os boot"
+nh os boot "$TARGET_DIR" -H "$HOST"
 
 cat <<EOF
 

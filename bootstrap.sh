@@ -72,8 +72,11 @@ git() {
 }
 
 # nh may also be absent on a fresh Nix install; fall back to a throwaway nix shell.
+# The internal nix calls spawned by nh also need --extra-experimental-features, so
+# we set it via NIX_CONFIG which nh forwards into its subprocesses.
 nh() {
-    nix "${NIX_FLAGS[@]}" shell nixpkgs#nh -c nh "$@"
+    NIX_CONFIG="extra-experimental-features = nix-command flakes" \
+        nix "${NIX_FLAGS[@]}" shell nixpkgs#nh -c nh "$@"
 }
 
 # --- clone or update --------------------------------------------------------

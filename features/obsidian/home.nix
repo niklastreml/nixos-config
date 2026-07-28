@@ -4,7 +4,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.obsidian ];
     programs.obsidian.enable = true;
     programs.obsidian.vaults."notes" = {
       enable = true;

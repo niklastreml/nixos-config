@@ -4,7 +4,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.tmux ];
     programs.tmux = {
       enable = true;
       clock24 = true;

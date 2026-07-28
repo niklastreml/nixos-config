@@ -4,8 +4,6 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.vscode ];
-
     programs.vscode = {
     enable = true;
     mutableExtensionsDir = true;

@@ -17,17 +17,11 @@
     # combined system + home
     "neovim"
     # home
-    "bitwarden"
-    "btop"
     "direnv"
     "fish"
-    "fzf"
     "git"
-    "k9s"
-    "misc-configs"
     "opencode"
     "packages-cli"
-    "scripts"
     "starship"
     "stylix"
     "tmux"

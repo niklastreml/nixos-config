@@ -14,5 +14,4 @@
     xournalpp
     ytmdesktop
   ];
-  home.pointerCursor.enable = true;
 }

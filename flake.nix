@@ -2,22 +2,22 @@
   description = "NixOS + home-manager config flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     nixos-wsl.url = "github:nix-community/NixOS-WSL/main";
 
     nixvim = {
-      url = "github:nix-community/nixvim/nixos-26.05";
+      url = "github:nix-community/nixvim/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     stylix = {
-      url = "github:nix-community/stylix/release-26.05";
+      url = "github:nix-community/stylix/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -60,11 +60,13 @@
         inherit aislop nixvim work-skills;
       };
 
-      # NUR is exposed as `pkgs.nur` via its overlay, so home-manager modules
-      # that use `useGlobalPkgs` pick it up from the system package set.
-      nurOverlayModule = {
-        nixpkgs.overlays = [ nur.overlays.default ];
-      };
+      # Overlays applied to every host's package set. NUR is exposed as
+      # `pkgs.nur` so home-manager modules using `useGlobalPkgs` pick it up.
+      mkOverlays =
+        system:
+        [
+          nur.overlays.default
+        ];
 
       # Extra home-manager modules per host (stylix everywhere, noctalia on the
       # graphical hosts). Reused by both mkHost and mkHome so there is a single
@@ -85,7 +87,7 @@
           inherit system;
           specialArgs = { inherit inputs; };
           modules = [
-            nurOverlayModule
+            { nixpkgs.overlays = mkOverlays system; }
             ./nixos/hosts/${hostname}/configuration.nix
             home-manager.nixosModules.home-manager
             {
@@ -110,7 +112,7 @@
             inherit system;
             config.allowUnfree = true;
             config.permittedInsecurePackages = [ "electron-40.10.5" ];
-            overlays = [ nur.overlays.default ];
+            overlays = mkOverlays system;
           };
         in
         home-manager.lib.homeManagerConfiguration {

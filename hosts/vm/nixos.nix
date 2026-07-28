@@ -12,17 +12,23 @@
   myFeatures = lib.genAttrs [
     # system
     "audio"
+    "bluetooth"
+    "steam"
     "networkmanager"
+    "wifi"
     "docker"
-    "vm-guest-tools"
     # combined system + home
     "hyprland"
     "usb"
     "neovim"
     # home
+    "browser"
+    "discord"
     "direnv"
+    "eduroam"
     "fish"
     "git"
+    "noctalia"
     "obsidian"
     "opencode"
     "packages-cli"

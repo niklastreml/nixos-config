@@ -73,6 +73,10 @@
 
   virtualisation.vmVariant = {
     users.users.ntreml.initialPassword = "ntreml";
+    virtualisation = {
+      memorySize = 8192; # Size in MiB (e.g., 8192 = 8GB)
+      cores = 4; # Number of CPU cores
+    };
   };
 
   nixpkgs.config.allowUnfree = true;

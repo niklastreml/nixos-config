@@ -18,7 +18,7 @@ in
     stylix.enable = true;
     stylix.polarity = "dark";
     stylix.image = ../../assets/wallpaper.png;
-    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/dracula.yaml";
+    stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-frappe.yaml";
     stylix.fonts = {
       serif = {
         package = pkgs.dejavu_fonts;

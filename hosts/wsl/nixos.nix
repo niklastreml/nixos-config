@@ -35,7 +35,7 @@
 
   networking.hostName = "wsl";
 
-  wsl.interop.register = true;
+  wsl.interop.register = false;
   wsl.enable = true;
   wsl.defaultUser = "ntreml";
   wsl.wslConf.network.generateResolvConf = false;

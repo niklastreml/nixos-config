@@ -40,6 +40,10 @@
   wsl.defaultUser = "ntreml";
   wsl.wslConf.network.generateResolvConf = false;
 
+  wsl.useWindowsDriver = true;
+
+  environment.sessionVariables.LD_LIBRARY_PATH = [ "${config.wsl.wslLib}/lib" ];
+
   users.users."ntreml" = {
     # Match the UID the WSL instance already assigned; otherwise NixOS defaults
     # the first normal user to 1000 and integrated home-manager activation

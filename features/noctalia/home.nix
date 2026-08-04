@@ -63,6 +63,22 @@ in
           backend = "auto";
         };
 
+        idle = {
+          pre_action_fade_seconds = 2.0;
+          behavior = {
+            lock = {
+              enabled = true;
+              timeout = 300;
+              action = "lock";
+            };
+            screen-off = {
+              enabled = true;
+              timeout = 360;
+              action = "screen_off";
+            };
+          };
+        };
+
         # ---- Widget: Power Profile (cycles on click) ----
         widget.power_profile = {
           type = "power_profile";

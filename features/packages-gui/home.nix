@@ -13,7 +13,6 @@ in
     home.packages = with pkgs; [
       brave
       vesktop
-      ddcutil
       easyroam-connect-desktop
       ghostty
       hyprpicker

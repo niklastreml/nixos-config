@@ -15,11 +15,16 @@ in
 
   config = lib.mkIf cfg.enable {
     environment.systemPackages = with pkgs; [
+      ddcutil
       hyprpolkitagent
     ];
 
     programs.hyprland.enable = true;
     programs.hyprland.xwayland.enable = true;
+
+    services.ddccontrol.enable = true;
+    services.ddccontrol.package = pkgs.ddcutil-service;
+
     xdg.portal = {
       enable = true;
       extraPortals = [ pkgs.xdg-desktop-portal-gtk ];

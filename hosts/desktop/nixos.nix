@@ -58,4 +58,5 @@
     "nvidia_drm.fbdev=1"
   ];
   hardware.nvidia.package = config.boot.kernelPackages.nvidiaPackages.latest;
+  services.xserver.videoDrivers = [ "nvidia" ];
 }

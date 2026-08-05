@@ -374,6 +374,7 @@ in
     performance.byteCompileLua.enable = true;
     # ── Plugins ──────────────────────────────────────────────────
     plugins = {
+      markdown-preview.enable = true;
       # ── Telescope ──────────────────────────────────────────
       telescope.enable = true;
       # ── GitSigns ──────────────────────────────────────────

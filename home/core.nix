@@ -13,4 +13,12 @@
   # own. Avoids a second nixpkgs evaluation and the flake-follows source
   # mismatch warning.
   programs.nixvim.nixpkgs.useGlobalPackages = true;
+
+  xdg.configFile."nixpkgs/config.nix".text = ''
+    {
+      allowUnfree = true;
+    }
+  '';
+
+  home.sessionVariables.NIXPKGS_ALLOW_UNFREE = "1";
 }

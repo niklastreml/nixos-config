@@ -519,6 +519,7 @@ in
           latex
           scss
           svelte
+          templ
           tsx
           typst
           vue

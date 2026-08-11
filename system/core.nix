@@ -29,6 +29,9 @@
   };
 
   nix.settings = {
+    max-jobs = "auto";
+    cores = 0;
+    auto-optimise-store = true;
     trusted-users = [
       "root"
       "ntreml"

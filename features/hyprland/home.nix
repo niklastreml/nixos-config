@@ -444,6 +444,13 @@ in
             (lib.generators.mkLuaInline "{ locked = true }")
           ];
         }
+        {
+          _args = [
+            "SUPER + SHIFT + I"
+            (lib.generators.mkLuaInline "hl.dsp.exec_cmd(\"noctalia msg caffeine-toggle\")")
+            (lib.generators.mkLuaInline "{ locked = true, repeating = false }")
+          ];
+        }
       ];
 
       window_rule = [

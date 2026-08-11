@@ -19,7 +19,6 @@ in
       enable = true;
 
       settings = {
-        services.notifications.monitor = "";
         desktop_widgets = {
           enabled = false;
         };
@@ -40,19 +39,28 @@ in
             "launcher"
             "workspaces"
             "media"
+            "audio_visualizer"
+            "active_window"
           ];
-          center = [ "active_window" ];
+          center = [ "taskbar" ];
           end = [
             "tray"
             "notifications"
             "clipboard"
+            "caffeine"
+            "wvkbd"
+
+            "spacer"
+
             "network"
             "bluetooth"
             "volume"
             "brightness"
             "power_profile"
-            "wvkbd"
             "battery"
+
+            "spacer"
+
             "session"
             "clock"
           ];
@@ -60,7 +68,6 @@ in
 
         brightness = {
           enable_ddcutil = true;
-          backend = "auto";
         };
 
         idle = {
@@ -84,12 +91,23 @@ in
           type = "power_profile";
         };
 
+        widget.media = {
+          hide_when_no_media = true;
+        };
+
         # ---- Widget: On-screen Keyboard Toggle ----
         widget.wvkbd = {
           type = "custom_button";
           glyph = "keyboard";
           tooltip = "Toggle on-screen keyboard";
-          command = "pkill wvkbd-mobintl 2>/dev/null || setsid wvkbd-mobintl &";
+          actions.left = "pkill wvkbd-mobintl 2>/dev/null || setsid wvkbd-mobintl &";
+        };
+
+        widget.taskbar = {
+          group_by_workspace = true;
+          show_all_outputs = true;
+          group_single_icon_per_app = true;
+          show_workspace_label = false;
         };
       };
     };

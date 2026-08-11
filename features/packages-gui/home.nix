@@ -23,7 +23,6 @@ in
       seer
       wvkbd
       xournalpp
-      ytmdesktop
     ];
   };
 }

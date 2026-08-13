@@ -9,44 +9,49 @@
     ./hardware-configuration.nix
   ];
 
-  myFeatures = lib.genAttrs [
-    # system
-    "audio"
-    "bluetooth"
-    "steam"
-    "networkmanager"
-    "wifi"
-    "docker"
-    # combined system + home
-    "hyprland"
-    "usb"
-    "neovim"
-    # home
-    "browser"
-    "discord"
-    "direnv"
-    "eduroam"
-    "fish"
-    "git"
-    "noctalia"
-    "obsidian"
-    "opencode"
-    "packages-cli"
-    "packages-gui"
-    "starship"
-    "stylix"
-    "tmux"
-    "vscode"
-  ] (_: { enable = true; })
-  // {
-    # Work tooling cherry-picked (master work.enable stays off): the ~/work git
-    # identity, glab, and opencode ~/work access.
-    work = {
-      git.enable = true;
-      glab.enable = true;
-      opencode.enable = true;
+  myFeatures =
+    lib.genAttrs
+      [
+        # system
+        "audio"
+        "bluetooth"
+        "steam"
+        "networkmanager"
+        "wifi"
+        "docker"
+        # combined system + home
+        "hyprland"
+        "usb"
+        "neovim"
+        # home
+        "browser"
+        "discord"
+        "direnv"
+        "eduroam"
+        "fish"
+        "git"
+        "noctalia"
+        "obsidian"
+        "opencode"
+        "packages-cli"
+        "packages-gui"
+        "starship"
+        "stylix"
+        "tmux"
+        "vscode"
+      ]
+      (_: {
+        enable = true;
+      })
+    // {
+      # Work tooling cherry-picked (master work.enable stays off): the ~/work git
+      # identity, glab, and opencode ~/work access.
+      work = {
+        git.enable = true;
+        glab.enable = true;
+        opencode.enable = true;
+      };
     };
-  };
 
   networking.hostName = "laptop";
   services.libinput.enable = true;

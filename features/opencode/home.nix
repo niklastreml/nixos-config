@@ -19,6 +19,8 @@ in
     programs.opencode = {
     enable = true;
     settings.autoupdate = false;
+
+    context = ./AGENTS.md;
     settings.permission = {
       # Reading files outside the current workspace normally prompts via the
       # `external_directory` guard (which defaults to "ask"). Allow the trees

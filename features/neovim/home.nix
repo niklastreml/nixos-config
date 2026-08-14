@@ -374,7 +374,13 @@ in
     performance.byteCompileLua.enable = true;
     # ── Plugins ──────────────────────────────────────────────────
     plugins = {
-      markdown-preview.enable = true;
+      markdown-preview = {
+        enable = true;
+        settings = {
+          port = "8888";
+          echo_preview_url = 1;
+        };
+      };
       # ── Telescope ──────────────────────────────────────────
       telescope.enable = true;
       # ── GitSigns ──────────────────────────────────────────

@@ -38,7 +38,6 @@ in
       lua5_1
       luarocks
       mercurial
-      mermaid-cli
       net-tools
       nh
       libqalculate

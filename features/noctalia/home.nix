@@ -34,24 +34,24 @@ in
         bar.main = {
           position = "top";
           enabled = true;
+          capsule = true;
           start = [
             "control-center"
             "launcher"
-            "workspaces"
+            "taskbar"
             "media"
             "audio_visualizer"
             "active_window"
           ];
-          center = [ "taskbar" ];
-          end = [
-            "tray"
+          center = [
             "notifications"
             "clipboard"
+            "clock"
             "caffeine"
             "wvkbd"
-
-            "spacer"
-
+          ];
+          end = [
+            "tray"
             "network"
             "bluetooth"
             "volume"
@@ -62,7 +62,6 @@ in
             "spacer"
 
             "session"
-            "clock"
           ];
         };
 
@@ -104,11 +103,22 @@ in
         };
 
         widget.taskbar = {
+          workspace_group_capsule = false;
           group_by_workspace = true;
           show_all_outputs = true;
           group_single_icon_per_app = true;
-          show_workspace_label = false;
+          workspace_label_placement = "inside";
+          show_active_indicator = false;
         };
+
+        widget.brightness = {
+          show_label = false;
+        };
+
+        widget.volume = {
+          show_label = false;
+        };
+
       };
     };
   };

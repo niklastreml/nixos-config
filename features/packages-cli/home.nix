@@ -12,7 +12,6 @@ in
     home.packages = with pkgs; [
       autojump
       bat
-      bear
       bitwarden-cli
       chafa
       cloc
@@ -37,14 +36,12 @@ in
       kubectl
       lua5_1
       luarocks
-      mercurial
       net-tools
       nh
       libqalculate
       ripgrep
       texliveBasic
       tree-sitter
-      typst
       unzip
       (callPackage ./libtexprintf.nix { })
       vim

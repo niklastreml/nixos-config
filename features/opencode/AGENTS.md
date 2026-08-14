@@ -7,10 +7,10 @@ Both are installed on every host managed by this config, but check with
 `command -v` first if you are on an unfamiliar machine and fall back to the
 default when the replacement is missing.
 
-| Instead of | Use  | Notes                                                          |
-| ---------- | ---- | -------------------------------------------------------------- |
-| `find`     | `fd` | Respects `.gitignore`, skips hidden files, regex by default.    |
-| `grep`     | `rg` | Respects `.gitignore`, recursive by default, much faster.       |
+| Instead of | Use  | Notes                                                        |
+| ---------- | ---- | ------------------------------------------------------------ |
+| `find`     | `fd` | Respects `.gitignore`, skips hidden files, regex by default. |
+| `grep`     | `rg` | Respects `.gitignore`, recursive by default, much faster.    |
 
 Common translations:
 

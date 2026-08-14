@@ -27,8 +27,8 @@ real blockers beats one that lists thirty style nits.
   reliability. Mention style only when it harms readability.
 - **Be specific**: Cite `file_path:line_number`. Never restate code
   the author already wrote.
-- **Be actionable**: Every finding should tell the author *what* to
-  fix and *why*, not just *what's wrong*.
+- **Be actionable**: Every finding should tell the author _what_ to
+  fix and _why_, not just _what's wrong_.
 - **Respect scope**: Review the diff, not the entire file history.
   Flag pre-existing issues only when the change makes them worse.
 - **Stay concise**: 1–3 bullets per severity level. If you need
@@ -54,7 +54,7 @@ break downstream.
 
 Identify existing tests touched by the change. If none exist,
 propose the highest-impact tests (unit or integration) that would
-catch the most likely failures. Be specific about *what* to test,
+catch the most likely failures. Be specific about _what_ to test,
 not just "add tests."
 
 ### 4. Assess Security and Reliability
@@ -72,7 +72,7 @@ For lightweight changes, check:
 
 ### 5. Spot Performance Risks
 
-Call out *obvious* inefficiencies only — not hypothetical ones:
+Call out _obvious_ inefficiencies only — not hypothetical ones:
 
 - N+1 queries, unnecessary allocations, tight-loop I/O
 - Unbounded retries, missing timeouts, missing backpressure

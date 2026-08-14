@@ -17,6 +17,13 @@
     }
   ];
 
+  wayland.windowManager.hyprland.settings.device = [
+    {
+      name = "elan2513:00-04f3:422a";
+      output = "eDP-1";
+    }
+  ];
+
   programs.nh = {
     enable = true;
     flake = "/home/ntreml/code/nixos-config";

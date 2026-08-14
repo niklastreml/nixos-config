@@ -27,11 +27,14 @@ in
 
         location.auto_locate = true;
         shell.avatar_path = "~/.face";
+        shell.lang = "en";
 
         # ---- Bar Configuration ----
         bar.order = [ "main" ];
 
         bar.main = {
+          margin_ends = 5;
+          concave_edge_corners = false;
           position = "top";
           enabled = true;
           capsule = true;
@@ -40,18 +43,23 @@ in
             "launcher"
             "taskbar"
             "media"
-            "audio_visualizer"
             "active_window"
           ];
           center = [
-            "notifications"
-            "clipboard"
-            "clock"
-            "caffeine"
-            "wvkbd"
+            "audio_visualizer"
           ];
           end = [
+            "clock"
+
+            "spacer"
+
+            "notifications"
             "tray"
+            "clipboard"
+            "wvkbd"
+
+            "spacer"
+
             "network"
             "bluetooth"
             "volume"
@@ -89,9 +97,16 @@ in
         widget.power_profile = {
           type = "power_profile";
         };
+        widget.active_window = {
+          min_length = 40;
+          max_length = 180;
+          title_scroll = "on_hover";
+
+        };
 
         widget.media = {
           hide_when_no_media = true;
+          hide_artist = true;
         };
 
         # ---- Widget: On-screen Keyboard Toggle ----

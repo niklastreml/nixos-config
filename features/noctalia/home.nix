@@ -30,7 +30,7 @@ in
           fill_color = "#000000";
           automation = {
             enabled = true;
-            interval_seconds = 300;
+            interval_seconds = 900;
             order = "stretch";
             recursive = true;
           };

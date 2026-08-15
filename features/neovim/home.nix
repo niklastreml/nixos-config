@@ -46,6 +46,26 @@ in
         termguicolors = true;
       };
 
+      # ── autoCmds ─────────────────────────────────────────────────
+      autoCmd = [
+        {
+          event = [ "FileType" ];
+          pattern = [
+            "markdown"
+            "gitcommit"
+            "text"
+            "tex"
+            "asciidoc"
+          ];
+          callback.__raw = ''
+            function()
+              vim.opt_local.spell = true
+              vim.opt_local.spelllang = { "en_us" }
+            end
+          '';
+        }
+      ];
+
       # ── Keymaps ──────────────────────────────────────────────────
       keymaps = [
         # File explorer
@@ -84,7 +104,8 @@ in
         {
           mode = "n";
           key = "<leader>lf";
-          action.__raw = "require(\"conform\").format";
+          action.__raw = "function() require(\"conform\").format({async = true}) end";
+
           options.desc = "[F]ormat";
         }
         {
@@ -380,7 +401,6 @@ in
           settings = {
             default_format_opts = {
               lsp_format = "fallback";
-              async = true;
               timeout_ms = 500;
             };
             formatters_by_ft = {
@@ -396,7 +416,10 @@ in
               json = [ "jq" ];
               bash = [ "shfmt" ];
               yaml = [ "yamlfmt" ];
-              nix = [ "nixfmt" "injected" ];
+              nix = [
+                "nixfmt"
+                "injected"
+              ];
               lua = [
                 "stylua"
               ];

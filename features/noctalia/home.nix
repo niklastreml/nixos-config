@@ -23,7 +23,18 @@ in
           enabled = false;
         };
         # ---- Wallpaper (disabled — Stylix manages it) ----
-        wallpaper.enabled = false;
+        wallpaper = {
+          enabled = true;
+          directory = ../../assets/wallpapers;
+          fill_mode = "crop";
+          fill_color = "#000000";
+          automation = {
+            enabled = true;
+            interval_seconds = 300;
+            order = "stretch";
+            recursive = true;
+          };
+        };
 
         location.auto_locate = true;
         shell.avatar_path = "~/.face";
@@ -33,11 +44,16 @@ in
         bar.order = [ "main" ];
 
         bar.main = {
+          auto_hide = true;
+          reserve_space = false;
+          layer = "overlay";
+
           margin_ends = 5;
           concave_edge_corners = false;
           position = "top";
           enabled = true;
           capsule = true;
+
           start = [
             "control-center"
             "launcher"

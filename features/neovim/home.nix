@@ -396,7 +396,7 @@ in
               json = [ "jq" ];
               bash = [ "shfmt" ];
               yaml = [ "yamlfmt" ];
-              nix = [ "injected" ];
+              nix = [ "nixfmt" "injected" ];
               lua = [
                 "stylua"
               ];

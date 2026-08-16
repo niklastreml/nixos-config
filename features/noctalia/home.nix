@@ -44,9 +44,8 @@ in
         bar.order = [ "main" ];
 
         bar.main = {
-          auto_hide = true;
-          reserve_space = false;
-          layer = "overlay";
+          auto_hide = false;
+          reserve_space = true;
 
           margin_ends = 5;
           concave_edge_corners = false;
@@ -65,12 +64,11 @@ in
             "audio_visualizer"
           ];
           end = [
-            "clock"
 
+            "tray"
             "spacer"
 
             "notifications"
-            "tray"
             "clipboard"
             "wvkbd"
 
@@ -83,6 +81,8 @@ in
             "power_profile"
             "battery"
 
+            "spacer"
+            "clock"
             "spacer"
 
             "session"

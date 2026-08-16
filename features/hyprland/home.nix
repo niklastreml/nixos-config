@@ -9,8 +9,18 @@ let
 in
 {
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.rot8 ];
+    home.packages = [
+      pkgs.rot8
+    ];
     wayland.windowManager.hyprland = {
+      extraConfig = ''
+        local monitor_file = io.open(os.getenv("HOME") .. "/.config/hypr/monitors.lua", "r")
+          if monitor_file then
+              monitor_file:close()
+              require("monitors")
+          end
+      '';
+
       enable = true;
       configType = "lua";
       settings = {

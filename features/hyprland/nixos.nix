@@ -17,7 +17,21 @@ in
     environment.systemPackages = with pkgs; [
       ddcutil
       hyprpolkitagent
+      hyprmoncfg
     ];
+
+    systemd.user.services.hyprmoncfgd = {
+      description = "Hyprland monitor profile daemon (hyprmoncfgd)";
+      after = [ "graphical-session.target" ];
+      wantedBy = [ "default.target" ];
+
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.hyprmoncfg}/bin/hyprmoncfgd";
+        Restart = "on-failure";
+        RestartSec = 2;
+      };
+    };
 
     programs.hyprland.enable = true;
     programs.hyprland.xwayland.enable = true;

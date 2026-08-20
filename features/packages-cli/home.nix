@@ -51,7 +51,6 @@ in
 
     # CLI tools whose only config is enabling the home-manager module (which
     # also wires up stylix theming and shell integration).
-    programs.rbw.enable = true;
     programs.btop.enable = true;
     programs.fzf.enable = true;
     programs.k9s.enable = true;

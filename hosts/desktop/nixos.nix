@@ -44,8 +44,6 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  services.power-profiles-daemon.enable = true;
-  services.upower.enable = true;
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
   hardware.nvidia.modesetting.enable = true;

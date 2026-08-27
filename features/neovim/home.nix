@@ -409,6 +409,7 @@ in
                 "gofumpt"
               ];
               python = [ "ruff" ];
+              slang = [ "clang_format" ];
               markdown = [
                 "oxfmt"
                 "injected"
@@ -499,6 +500,11 @@ in
               settings = {
                 title_from_heading = false;
               };
+            };
+            slangd = {
+              enable = true;
+              package = pkgs.shader-slang;
+              cmd = [ "slangd" ];
             };
             yamlls.enable = true;
             ty.enable = true;
@@ -757,6 +763,12 @@ in
           enable = true;
         };
 
+      };
+
+      filetype = {
+        extension = {
+          shaderslang = "slang";
+        };
       };
 
       # ── Extra Plugins (no native nixvim module) ───────────────────

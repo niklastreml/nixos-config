@@ -73,6 +73,7 @@
     wget
     curl
     git
+    jj
   ];
 
   virtualisation.vmVariant = {

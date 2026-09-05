@@ -18,6 +18,7 @@ in
       hyprpolkitagent
       imagemagick
       nerd-fonts.fira-code
+      stremio-linux-shell
       wvkbd
       xournalpp
     ];

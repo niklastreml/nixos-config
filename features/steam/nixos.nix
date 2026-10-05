@@ -28,6 +28,13 @@ in
             gamemode
           ];
       })
+      (lutris.override {
+        extraPkgs =
+          pkgs': with pkgs'; [
+            gamescope
+            gamemode
+          ];
+      })
     ];
   };
 }

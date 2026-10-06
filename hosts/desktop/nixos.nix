@@ -36,6 +36,7 @@
     "stylix"
     "tmux"
     "vscode"
+    "zed"
   ] (_: { enable = true; });
 
   networking.hostName = "desktop";

@@ -103,5 +103,14 @@
     !include /etc/nixos/github-token.conf
   '';
 
+  programs.nix-ld = {
+    enable = true;
+
+    libraries = with pkgs; [
+      stdenv.cc.cc
+      zlib
+    ];
+  };
+
   system.stateVersion = "26.05"; # Did you read the comment?
 }

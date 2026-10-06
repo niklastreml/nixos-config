@@ -40,13 +40,14 @@
         "stylix"
         "tmux"
         "vscode"
+        "zed"
       ]
       (_: {
         enable = true;
       })
     // {
       # Work tooling cherry-picked (master work.enable stays off): the ~/work git
-      # identity, glab, and opencode ~/work access.
+      # identity, glab, and agent ~/work access.
       work = {
         git.enable = true;
         glab.enable = true;

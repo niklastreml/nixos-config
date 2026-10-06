@@ -13,5 +13,6 @@
     "starship"
     "stylix"
     "tmux"
+    "zed"
   ] (_: { enable = true; });
 }

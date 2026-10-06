@@ -556,11 +556,11 @@
     "work-skills": {
       "flake": false,
       "locked": {
-        "lastModified": 1785746714,
-        "narHash": "sha256-uPU4Qf1agy5jZoYalk55kGuZ01Csclzc16PbzWscN2U=",
+        "lastModified": 1790342165,
+        "narHash": "sha256-SuRCmSh6BdghYbCvwTihYdwhWWoRN2r27RdO45tkHu8=",
         "ref": "refs/heads/main",
-        "rev": "a677cdfe53f81923aa078a56c3b566d542534148",
-        "revCount": 148,
+        "rev": "f357ce3b5b032f365a7fde9dbbb07ce991c1408c",
+        "revCount": 178,
         "type": "git",
         "url": "ssh://git@gitlab.devops.telekom.de/caas/agentic/skills.git"
       },
